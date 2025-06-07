@@ -74,9 +74,6 @@ function formatAsJson(html, clubName, timeRange = null) {
                      $('input[name="data_grafiku"]').val() || 
                      new Date().toISOString().split('T')[0];
 
-    // Format the output as requested
-    const availableHours = {};
-    
     // Parse time range if provided
     let startTime = '00:00';
     let endTime = '23:59';
@@ -89,21 +86,42 @@ function formatAsJson(html, clubName, timeRange = null) {
         }
     }
     
+    // Initialize available hours object
+    const availableHours = {};
+    
     // Find all available time slots with reservation links within the specified range
     Object.entries(availability).forEach(([time, courtsData]) => {
         if (isTimeInRange(time, startTime, endTime)) {
+            let linkIndex = 1;
+            availableHours[time] = {};
+            
+            // Collect all available courts for this time slot
             Object.entries(courtsData).forEach(([courtId, courtData]) => {
                 if (courtData.status === 'available' && courtData.bookingLink) {
-                    availableHours[time] = courtData.bookingLink;
+                    availableHours[time][`link${linkIndex++}`] = courtData.bookingLink;
                 }
             });
+            
+            // If no available courts, remove the time slot
+            if (Object.keys(availableHours[time]).length === 0) {
+                delete availableHours[time];
+            }
         }
+    });
+
+    // Create simplified version with just the first available link for each hour
+    const simplifiedHours = {};
+    Object.entries(availableHours).forEach(([time, links]) => {
+        simplifiedHours[time] = Object.values(links)[0];
     });
 
     return {
         clubName: clubName,
         date: dateMatch,
-        availableHours: availableHours
+        availableHours: simplifiedHours,
+        detailedAvailability: {
+            availableHours: availableHours
+        }
     };
 }
 
