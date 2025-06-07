@@ -64,10 +64,12 @@ The script outputs a JSON object with the following structure:
   "date": "2025-06-15",
   "availableHours": {
     "16:30": {
-    "1": "https://kluby.org/mera/grafik/rezerwuj/1798/1749313800",
-    "2": "https://kluby.org/mera/grafik/rezerwuj/1798/1749314800",
+    "link1": "https://kluby.org/mera/grafik/rezerwuj/1798/1749313800",
+    "link2": "https://kluby.org/mera/grafik/rezerwuj/1798/1749314800",
     },
-    "18:00": "https://kluby.org/mera/grafik/rezerwuj/1798/1749383800"
+    "18:00": {
+      "link1": "https://kluby.org/mera/grafik/rezerwuj/1798/1749383800"
+    }
   }
 }
 ```
