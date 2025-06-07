@@ -46,7 +46,7 @@ node index.js [clubName] [date] [timeRange]
 
 2. Check availability for a specific club and date:
    ```bash
-   node index.js wola 2025-06-15
+   node index.js park-tennis-academy 2025-06-15
    ```
 
 3. Check availability for a specific time range:
@@ -63,8 +63,11 @@ The script outputs a JSON object with the following structure:
   "clubName": "mera",
   "date": "2025-06-15",
   "availableHours": {
-    "16:30": "https://kluby.org/mera/rezerwuj?court=1&date=2025-06-15&time=16:30",
-    "18:00": "https://kluby.org/mera/rezerwuj?court=2&date=2025-06-15&time=18:00"
+    "16:30": {
+    "1": "https://kluby.org/mera/grafik/rezerwuj/1798/1749313800",
+    "2": "https://kluby.org/mera/grafik/rezerwuj/1798/1749314800",
+    },
+    "18:00": "https://kluby.org/mera/grafik/rezerwuj/1798/1749383800"
   }
 }
 ```
