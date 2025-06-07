@@ -1,0 +1,17 @@
+{
+  "name": "kort",
+  "version": "1.0.0",
+  "description": "CLI tool to check tennis court availability",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "check": "node index.js"
+  },
+  "keywords": ["tennis", "court", "booking", "availability"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12"
+  }
+}
