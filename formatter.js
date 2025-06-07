@@ -109,19 +109,10 @@ function formatAsJson(html, clubName, timeRange = null) {
         }
     });
 
-    // Create simplified version with just the first available link for each hour
-    const simplifiedHours = {};
-    Object.entries(availableHours).forEach(([time, links]) => {
-        simplifiedHours[time] = Object.values(links)[0];
-    });
-
     return {
         clubName: clubName,
         date: dateMatch,
-        availableHours: simplifiedHours,
-        detailedAvailability: {
-            availableHours: availableHours
-        }
+        availableHours: availableHours
     };
 }
 
