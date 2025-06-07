@@ -54,6 +54,32 @@ node index.js [clubName] [date] [timeRange]
    node index.js mera 2025-06-15 "16:30-20:00"
    ```
 
+## Convenience Script
+
+For checking multiple clubs at once, you can use the `checkAvailiability.sh` script. This script checks both park-tennis-academy and mera clubs with a predefined time range.
+
+### Usage
+
+```bash
+./checkAvailiability.sh
+```
+
+### Configuration
+
+Edit the script to modify:
+- `DATE`: The date to check (default: 2025-06-07)
+- `TIME_RANGE`: The time range to check (default: 18:00-19:30)
+
+### Example Output
+
+```bash
+Checking availability for date: 2025-06-07
+Time range: 18:00-19:30
+------------------------------
+# Output for park-tennis-academy...
+# Output for mera...
+```
+
 ## Output Format
 
 The script outputs a JSON object with the following structure:
@@ -76,8 +102,10 @@ The script outputs a JSON object with the following structure:
 
 ## Output Files
 
-- `availability.json`: Contains the JSON output
-- `debug.html`: Raw HTML response for debugging purposes
+- `availability.json`: Contains the JSON output for the last checked club
+- `debug.html`: Raw HTML response for debugging purposes (overwritten on each run)
+
+> **Note**: When using `checkAvailiability.sh`, only the results from the last club checked will remain in `availability.json`.
 
 ## Dependencies
 
